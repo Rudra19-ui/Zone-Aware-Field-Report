@@ -1,25 +1,24 @@
-📌 Zone-Aware Field Report API (Django)
-Backend Technical Assignment
+📌 Zone-Aware Field Report API (Django) Backend Technical Assignment
 
-📖 Project Overview
+  📖 Project Overview
 
-This project implements a Zone-Aware Field Report Backend API using Django and Django REST Framework.
+  This project implements a Zone-Aware Field Report Backend API using Django and Django REST Framework.
 
-The system allows Field Executives to submit field reports based on geographic coordinates, and Supervisors to review and take action on reports only within their assigned zones.
+  The system allows Field Executives to submit field reports based on geographic coordinates, and Supervisors to review and take action on reports only within their assigned zones.
 
-All business rules such as automatic zone detection, risk evaluation based on submission time, and role-based access control are strictly enforced at the backend level.
+  All business rules such as automatic zone detection, risk evaluation based on submission time, and role-based access control are strictly enforced at the backend level.
 
-🎯 Objective
+ 🎯 Objective
 
-The purpose of this project is to demonstrate:
+  The purpose of this project is to demonstrate:
 
-Clean backend design
+  Clean backend design
 
-Proper enforcement of business rules
+  Proper enforcement of business rules
 
-Role-based access without third-party RBAC libraries
+  Role-based access without third-party RBAC libraries
 
-Scalable and maintainable Django REST architecture
+  Scalable and maintainable Django REST architecture
 
 
 | Technology            | Usage                      |
@@ -32,6 +31,7 @@ Scalable and maintainable Django REST architecture
 
 
 👥 User Roles
+
 1️⃣ Field Executive
 
 Can create field reports
@@ -76,31 +76,36 @@ Zones are not hardcoded and can be modified through the admin panel.
 
 Each field report contains:
 
-Title
+-> Title
 
-Description
+-> Description
 
-Latitude
+-> Latitude
 
-Longitude
+-> Longitude
 
-Auto-assigned zone
+-> Auto-assigned zone
 
-Submitted by (User)
+-> Submitted by (User)
 
-Submission timestamp
+-> Submission timestamp
 
-Risk flag (Boolean)
+-> Risk flag (Boolean)
 
-Status (PENDING, APPROVED, REJECTED)
+-> Status (PENDING, APPROVED, REJECTED)
 
 📋 Business Rules Implemented
 
 ✔ Zone is auto-determined based on coordinates
+
 ✔ Reports outside configured zones are rejected
+
 ✔ Reports submitted after 6:00 PM are marked risky
+
 ✔ Risky reports require supervisor approval
+
 ✔ Supervisors can only access reports from their zone
+
 ✔ Supervisors cannot approve/reject their own reports
 
 
@@ -113,44 +118,51 @@ Status (PENDING, APPROVED, REJECTED)
 
 
 ⚙️ Project Setup Instructions
+
 🔹 1. Clone Repository
-git clone <repository-url>
-cd <project-folder>
+
+    git clone <repository-url>
+    cd <project-folder>
 
 🔹 2. Create Virtual Environment
-python -m venv venv
+
+    python -m venv venv
 
 
 Activate (Windows):
 
-venv\Scripts\activate
+    venv\Scripts\activate
 
 🔹 3. Install Dependencies
-pip install django djangorestframework
+
+    pip install django djangorestframework
 
 🔹 4. Apply Migrations
-python manage.py makemigrations
-python manage.py migrate
+
+    python manage.py makemigrations
+    python manage.py migrate
 
 🔹 5. Create Superuser
-python manage.py createsuperuser
+
+    python manage.py createsuperuser
 
 🔹 6. Run Server
-python manage.py runserver
+
+    python manage.py runserver
 
 
-Open:
-
-http://127.0.0.1:8000/admin/
+Open:http://127.0.0.1:8000/admin/
 
 🔐 Role & User Setup (Admin Panel)
-Create Groups
 
-FIELD_EXECUTIVE
+-> Create Groups
 
-SUPERVISOR
+-> FIELD_EXECUTIVE
+
+-> SUPERVISOR
 
 Create Test Users
+
 | Username  | Groups                      |
 | --------- | --------------------------- |
 | fe_user   | FIELD_EXECUTIVE             |
@@ -159,47 +171,53 @@ Create Test Users
 
 
 ✔ Active → Checked
+
 ❌ Staff → Unchecked
+
 ❌ Superuser → Unchecked
 
-🧪 Testing Checklist (PDF Based)
+🧪 Testing Checklist 
+
 Field Executive Tests
 
-Create report inside zone → success
+ -> Create report inside zone → success
 
-Create report outside zone → rejected
+ -> Create report outside zone → rejected
 
-Reports after 6 PM → marked risky
+ -> Reports after 6 PM → marked risky
 
-View only own reports
+ -> View only own reports
 
-Supervisor Tests
+ -> Supervisor Tests
 
-Cannot create reports
+ -> Cannot create reports
 
-View reports only from assigned zone
+ -> View reports only from assigned zone
 
-Cannot approve own report
+ -> Cannot approve own report
 
-Can approve/reject valid reports
+ -> Can approve/reject valid reports
 
 📦 Sample API Requests
-Create Report
-POST /api/reports/
 
-{
-  "title": "Site Visit",
-  "description": "Routine inspection",
-  "latitude": 15,
-  "longitude": 15
-}
+Create Report
+
+    POST /api/reports/
+
+    {
+      "title": "Site Visit",
+      "description": "Routine inspection",
+      "latitude": 15,
+      "longitude": 15
+    }
 
 Approve Report
-PATCH /api/reports/1/status/
 
-{
-  "status": "APPROVED"
-}
+    PATCH /api/reports/1/status/
+
+    {
+      "status": "APPROVED"
+    }
 
 🧠 Design Decisions
 
@@ -234,6 +252,6 @@ RESTful API standards
 
 👤 Author
 
-Name: (Your Name)
+Name: RUDRA JOSHI
 Role: Backend Developer
 Framework: Django / DRF
